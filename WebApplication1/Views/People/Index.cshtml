@@ -1,0 +1,142 @@
+﻿@model IEnumerable<WebApplication1.Models.PeopleViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h5>Create Person</h5>
+
+        <partial name="_createPerson.cshtml" />
+    </div>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <h5>Search Person</h5>
+
+        <partial name="_filterPerson.cshtml" />
+    </div>
+</div>
+
+
+
+<table class="table" id="resultTable">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="@item.Id">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+  $(document).ready(function () {
+      $("#CreateBtn").click(function () {
+         
+          var data = {
+              Id: parseInt($('#Id').val()),
+              Name: $('#Name').val(),
+              PhoneNumber: $('#PhoneNumber').val(),
+              City: $('#City').val(),
+
+          };
+          var model = JSON.stringify(data);
+
+          $.ajax({
+              url: "/People/Create",
+              data: model,
+              type: "POST",
+              contentType: "application/json;charset=utf-8",
+              dataType: "json",
+              success: function (result) {
+
+                  location.reload(true);
+              },
+              error: function (errormessage) {
+                  alert(errormessage.responseText);
+              }
+          });
+      });
+
+
+      $("#FilterBtn").click(function () {
+
+          var data = {
+              Id: parseInt($('#FId').val()),
+              Name: $('#FName').val(),
+              PhoneNumber: $('#FPhoneNumber').val(),
+              City: $('#FCity').val(),
+
+          };
+          var model = JSON.stringify(data);
+
+  
+          $.ajax({
+              url: "/People/Index",
+              data: model,
+              type: "POST",
+              contentType: "application/json;charset=utf-8",
+              dataType: "json",
+              success: function (result) {
+
+              },
+              error: function (errormessage) {
+                  alert(errormessage.responseText);
+              }
+          });
+      });
+
+
+      $('#resultTable tr').click(function (event) {
+    
+          var Id = parseInt($(this).attr('id'))
+          $.ajax({
+              url: "/People/Delete",
+              data: JSON.stringify(Id),
+              type: "POST",
+              contentType: "application/json;charset=utf-8",
+              dataType: "json",
+              success: function (result) {
+
+                  location.reload(true);
+              },
+              error: function (errormessage) {
+                  alert(errormessage.responseText);
+              }
+          });
+      });
+  });
+</script>
+

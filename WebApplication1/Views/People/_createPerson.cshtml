@@ -1,0 +1,53 @@
+﻿
+
+
+<form asp-action="_createPerson">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="control-label"> Name</label>
+                <input name="Name" id="Name" class="form-control" />
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="control-label"> Phone Number</label>
+                <input id="PhoneNumber" name="PhoneNumber" class="form-control" />
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="control-label"> City</label>
+                <input name="City" id="City" class="form-control" />
+
+            </div>
+        </div>
+
+        <div class="col-md-1">
+            <div class="form-group">
+                <label class="control-label"> Id</label>
+                <input name="Id" id="Id" class="form-control" />
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label class="control-label"> <br /></label>
+                <input id="CreateBtn" value="Create" class="btn btn-primary btn-block" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+}

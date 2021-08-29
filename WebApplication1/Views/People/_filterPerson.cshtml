@@ -1,0 +1,47 @@
+﻿
+
+  
+<form asp-action="_createPerson">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="control-label"> Name</label>
+                <input name="FName" id="FName" value="" class="form-control" />
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="control-label"> Phone Number</label>
+                <input id="FPhoneNumber" value="" name="FPhoneNumber" class="form-control" />
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="control-label"> City</label>
+                <input name="FCity" id="FCity" value="" class="form-control" />
+
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label class="control-label"> Id</label>
+                <input name="FId" id="FId" value="0" class="form-control" />
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label class="control-label"> <br /></label>
+                <input type="button" id="FilterBtn" value="Create" class="btn btn-primary btn-block" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
